@@ -2,6 +2,8 @@ class Solution(object):
     def generateMatrix(self, n):
         if not n:
             return []
+        
+        
         res = [[0 for _ in xrange(n)] for _ in xrange(n)]
         left, right, top, down, num = 0, n-1, 0, n-1, 1
         while left <= right and top <= down:
