@@ -1,18 +1,18 @@
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
-        b = {}
+        d = {}
         ans = 0
         
         for i in nums:
-            if k-i in b and b[k-i] > 0:
+            if k-i in d and d[k-i] > 0:
+                d[k-i] -= 1
                 ans += 1
-                b[k-i] -= 1
                 
-            elif i not in b:
-                b[i] = 1
-                
+            elif i not in d:
+                d[i] = 1
             else:
-                b[i] += 1
+                d[i] += 1
+        
                 
-        return ans 
-                
+        return ans
+    
