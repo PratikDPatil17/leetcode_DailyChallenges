@@ -1,16 +1,13 @@
 # Write your MySQL query statement below
 
-  
-SELECT employee_id 
-FROM Salaries 
-WHERE employee_id NOT IN (SELECT employee_id 
-                             FROM Employees
-                           )
-UNION
 
-SELECT employee_id 
-FROM Employees 
-WHERE employee_id NOT IN (SELECT employee_id 
-                             FROM Salaries
-                           )
-ORDER BY employee_id
+SELECT T.employee_id from
+(
+    SELECT * FROM Employees 
+    UNION ALL
+    SELECT * FROM Salaries
+) T
+
+GROUP BY T.EMPLOYEE_ID
+HAVING COUNT(T.EMPLOYEE_ID) = 1   /*can also use count(*) */
+ORDER BY T.EMPLOYEE_ID ASC
